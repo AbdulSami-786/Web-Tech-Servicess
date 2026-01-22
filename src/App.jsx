@@ -1098,21 +1098,7 @@ function Services() {
               
               <p>{service.description}</p>
               
-              <motion.div 
-                className="service-cta"
-                initial={{ opacity: 0, y: 20 }}
-                whileHover={{ opacity: 1, y: 0 }}
-              >
-                <motion.button 
-                  className="btn btn-small"
-                  style={{ background: service.gradient }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Learn More
-                  <span>→</span>
-                </motion.button>
-              </motion.div>
+            
 
               <motion.div 
                 className="service-glow"
