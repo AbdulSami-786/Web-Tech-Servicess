@@ -483,29 +483,10 @@ function Navbar({ activeSection, isMenuOpen, toggleMenu, scrollToSection }) {
     >
       <div className="nav-container">
         <motion.div 
-          className="logo"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          // className="logo"
+          // whileHover={{ scale: 1.05 }}
+          // whileTap={{ scale: 0.95 }}
         >
-          <motion.span 
-            className="logo-icon"
-            animate={{ rotate: [0, 360] }}
-            transition={{ 
-              duration: 20, 
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M12 2L14 8L20 8L15.5 11.5L17 18L12 14.5L7 18L8.5 11.5L4 8L10 8L12 2Z" fill="url(#gradient)" stroke="url(#gradient)" strokeWidth="1.5"/>
-              <defs>
-                <linearGradient id="gradient" x1="4" y1="2" x2="20" y2="18" gradientUnits="userSpaceOnUse">
-                  <stop stopColor="#3a46ff"/>
-                  <stop offset="1" stopColor="#9d4edd"/>
-                </linearGradient>
-              </defs>
-            </svg>
-          </motion.span>
           <span className="logo-text">
             ASW <span className="highlight">CodeCraft</span>
           </span>
@@ -611,14 +592,6 @@ function Hero({ scrollToSection }) {
           initial="hidden"
           animate="show"
         >
-          <motion.div 
-            className="hero-badge"
-            variants={slideUp}
-            whileHover={{ scale: 1.1 }}
-          >
-            <span>🚀 Premium Software House</span>
-          </motion.div>
-
           <motion.h1 
             className="hero-title"
             variants={textReveal}
@@ -1098,7 +1071,12 @@ function Services() {
               
               <p>{service.description}</p>
               
-            
+              <motion.div 
+                className="service-cta"
+                initial={{ opacity: 0, y: 20 }}
+                whileHover={{ opacity: 1, y: 0 }}
+              >
+              </motion.div>
 
               <motion.div 
                 className="service-glow"
@@ -1344,8 +1322,6 @@ function Process() {
                 <h4>{step.title}</h4>
                 <p>{step.desc}</p>
               </div>
-              
-              
             </motion.div>
           ))}
         </motion.div>
@@ -1354,12 +1330,117 @@ function Process() {
   );
 }
 
-// Technology Stack Section
+// Technology Stack Section with Logos
 function TechnologyStack() {
   const technologies = [
-    "React", "Next.js", "Node.js", "Python", "TypeScript", "WordPress",
-    "PHP", "MySQL", "MongoDB", "Tailwind", "Figma", "Adobe Creative Suite",
-    "Git", "AWS", "Docker", "TensorFlow", "OpenAI", "SEO Tools"
+    { 
+      name: "React", 
+      icon: "⚛️",
+      color: "#61DAFB",
+      description: "Frontend library for building user interfaces"
+    },
+    { 
+      name: "Next.js", 
+      icon: "▲",
+      color: "#000000",
+      description: "React framework for production"
+    },
+    { 
+      name: "Node.js", 
+      icon: "🟢",
+      color: "#339933",
+      description: "JavaScript runtime environment"
+    },
+    { 
+      name: "Python", 
+      icon: "🐍",
+      color: "#3776AB",
+      description: "High-level programming language"
+    },
+    { 
+      name: "TypeScript", 
+      icon: "📘",
+      color: "#3178C6",
+      description: "Typed JavaScript superset"
+    },
+    { 
+      name: "WordPress", 
+      icon: "W",
+      color: "#21759B",
+      description: "Content management system"
+    },
+    { 
+      name: "PHP", 
+      icon: "🐘",
+      color: "#777BB4",
+      description: "Server-side scripting language"
+    },
+    { 
+      name: "MySQL", 
+      icon: "🐬",
+      color: "#4479A1",
+      description: "Relational database management"
+    },
+    { 
+      name: "MongoDB", 
+      icon: "🍃",
+      color: "#47A248",
+      description: "NoSQL database"
+    },
+    { 
+      name: "Tailwind", 
+      icon: "🎨",
+      color: "#38B2AC",
+      description: "CSS framework"
+    },
+    { 
+      name: "Figma", 
+      icon: "🖌️",
+      color: "#F24E1E",
+      description: "Design and prototyping tool"
+    },
+    { 
+      name: "Adobe Suite", 
+      icon: "🎬",
+      color: "#FF0000",
+      description: "Creative software suite"
+    },
+    { 
+      name: "Git", 
+      icon: "📊",
+      color: "#F05032",
+      description: "Version control system"
+    },
+    { 
+      name: "AWS", 
+      icon: "☁️",
+      color: "#FF9900",
+      description: "Cloud computing platform"
+    },
+    { 
+      name: "Docker", 
+      icon: "🐳",
+      color: "#2496ED",
+      description: "Containerization platform"
+    },
+    { 
+      name: "TensorFlow", 
+      icon: "🤖",
+      color: "#FF6F00",
+      description: "Machine learning framework"
+    },
+    { 
+      name: "OpenAI", 
+      icon: "🧠",
+      color: "#412991",
+      description: "AI research and deployment"
+    },
+    { 
+      name: "SEO Tools", 
+      icon: "🔍",
+      color: "#34A853",
+      description: "Search engine optimization"
+    }
   ];
 
   return (
@@ -1401,12 +1482,27 @@ function TechnologyStack() {
             >
               <motion.div 
                 className="tech-icon"
-                whileHover={{ rotate: 360 }}
+                style={{ background: tech.color }}
+                whileHover={{ rotate: 360, scale: 1.2 }}
                 transition={{ duration: 0.5 }}
               >
-                {tech.charAt(0)}
+                <span className="tech-logo">{tech.icon}</span>
               </motion.div>
-              <span>{tech}</span>
+              <motion.h4
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: index * 0.1 }}
+              >
+                {tech.name}
+              </motion.h4>
+              <motion.p 
+                className="tech-description"
+                initial={{ opacity: 0, height: 0 }}
+                whileHover={{ opacity: 1, height: "auto" }}
+                transition={{ duration: 0.3 }}
+              >
+                {tech.description}
+              </motion.p>
             </motion.div>
           ))}
         </motion.div>
@@ -1428,56 +1524,72 @@ function TechnologyStack() {
   );
 }
 
-// Portfolio Section
+// Portfolio Section with Fake Images
 function Portfolio() {
   const projects = [
     {
       title: "Fitness Gym Website",
       category: "Web Development",
       link: "https://gym-web-pink-eight.vercel.app/",
-      description: "Modern fitness website with booking system and training programs"
+      description: "Modern fitness website with booking system and training programs",
+      image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=600&fit=crop",
+      color: "#FF6B6B"
     },
     {
       title: "Gym Sample Website",
       category: "Web Development",
       link: "https://gym-sample-web-vbcw.vercel.app/",
-      description: "Responsive gym website with membership plans and trainer profiles"
+      description: "Responsive gym website with membership plans and trainer profiles",
+      image: "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w-800&h=600&fit=crop",
+      color: "#4ECDC4"
     },
     {
       title: "E-commerce Clone",
       category: "Web Development",
       link: "https://newclone-eight.vercel.app/",
-      description: "Modern e-commerce platform with shopping cart and payment integration"
+      description: "Modern e-commerce platform with shopping cart and payment integration",
+      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop",
+      color: "#FFD166"
     },
     {
       title: "Hotel Booking Platform",
       category: "Web Development",
       link: "https://hotels-plum.vercel.app/",
-      description: "Hotel reservation system with room booking and payment processing"
+      description: "Hotel reservation system with room booking and payment processing",
+      image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=600&fit=crop",
+      color: "#06D6A0"
     },
     {
       title: "Real Estate Portal",
       category: "Web Development",
       link: "https://indubai-estate.vercel.app/",
-      description: "Property listing platform with search filters and agent profiles"
+      description: "Property listing platform with search filters and agent profiles",
+      image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop",
+      color: "#118AB2"
     },
     {
       title: "Travel & Tourism Website",
       category: "Web Development",
       link: "https://surti-tour.vercel.app/trips",
-      description: "Tour booking platform with destination packages and reviews"
+      description: "Tour booking platform with destination packages and reviews",
+      image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&h=600&fit=crop",
+      color: "#EF476F"
     },
     {
       title: "Gaming Zone",
       category: "Web Development",
       link: "https://gamingzone-sample-web.vercel.app/",
-      description: "Gaming community website with tournaments and player profiles"
+      description: "Gaming community website with tournaments and player profiles",
+      image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800&h=600&fit=crop",
+      color: "#7209B7"
     },
     {
       title: "Restaurant Website",
       category: "Web Development",
       link: "https://resturant-sample-web-ya4y.vercel.app/",
-      description: "Restaurant website with menu, online ordering, and reservations"
+      description: "Restaurant website with menu, online ordering, and reservations",
+      image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      color: "#FF9E00"
     }
   ];
 
@@ -1519,26 +1631,39 @@ function Portfolio() {
             >
               <div className="portfolio-image">
                 <motion.div 
-                  className="image-placeholder"
+                  className="image-container"
+                  style={{ 
+                    background: `linear-gradient(135deg, ${project.color}40, ${project.color}20)`,
+                    backgroundImage: `url(${project.image})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center'
+                  }}
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <div className="project-overlay">
+                  <motion.div 
+                    className="project-overlay"
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
                     <motion.button 
                       className="btn btn-small"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                       onClick={() => window.open(project.link, '_blank')}
+                      style={{ background: project.color }}
                     >
                       View Live Project
                     </motion.button>
-                  </div>
+                  </motion.div>
                 </motion.div>
                 <motion.div 
                   className="project-badge"
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
                   transition={{ delay: index * 0.1 }}
+                  style={{ background: project.color }}
                 >
                   {project.category}
                 </motion.div>
@@ -1548,6 +1673,7 @@ function Portfolio() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ delay: index * 0.1 + 0.2 }}
+                  style={{ color: project.color }}
                 >
                   {project.title}
                 </motion.h3>
@@ -1558,6 +1684,16 @@ function Portfolio() {
                 >
                   {project.description}
                 </motion.p>
+                <motion.div 
+                  className="project-tech"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ delay: index * 0.1 + 0.4 }}
+                >
+                  <span className="tech-tag">React</span>
+                  <span className="tech-tag">Node.js</span>
+                  <span className="tech-tag">MongoDB</span>
+                </motion.div>
               </div>
             </motion.div>
           ))}
@@ -1953,7 +2089,7 @@ function Footer() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <motion.span 
+              {/* <motion.span 
                 className="logo-icon"
                 animate={{ rotate: [0, 360] }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
@@ -1967,7 +2103,7 @@ function Footer() {
                     </linearGradient>
                   </defs>
                 </svg>
-              </motion.span>
+              </motion.span> */}
               <span className="logo-text">
                 ASW <span className="highlight">CodeCraft</span>
               </span>

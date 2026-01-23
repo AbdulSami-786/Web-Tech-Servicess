@@ -56,7 +56,7 @@ h1, h2, h3, h4, h5, h6 {
 .logo-text {
   font-family: 'Fira Sans Extra Condensed', sans-serif;
   font-weight: 900;
-  font-size: 1.5rem;
+  font-size: 2rem;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
@@ -374,6 +374,7 @@ p {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  font-size: 1.7rem;
 }
 
 .nav-menu {
@@ -2217,4 +2218,46 @@ html {
   html {
     scroll-behavior: auto;
   }
+}
+/* Tech Stack Logo Styles */
+.tech-logo {
+  font-size: 1.5rem;
+}
+
+.tech-description {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  margin-top: 0.5rem;
+  overflow: hidden;
+  height: 0;
+  transition: height 0.3s ease;
+}
+
+/* Portfolio Image Styles */
+.image-container {
+  width: 100%;
+  height: 250px;
+  border-radius: var(--radius) var(--radius) 0 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.project-tech {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.tech-tag {
+  padding: 0.25rem 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+}
+
+/* Ensure images cover properly */
+.image-container {
+  background-size: cover !important;
+  background-position: center !important;
 }
